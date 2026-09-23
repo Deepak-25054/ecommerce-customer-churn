@@ -8,8 +8,18 @@ document
         const formData = new FormData(form);
 
         const resultDiv = document.getElementById("result");
+        const predictButton = document.getElementById("predictButton");
 
-        resultDiv.innerHTML = "Predicting...";
+        predictButton.disabled = true;
+        predictButton.textContent = "Analyzing...";
+
+        resultDiv.innerHTML = `
+            <div class="result-placeholder">
+                <div class="result-icon">...</div>
+                <h3>Analyzing Customer</h3>
+                <p>Please wait while the ML model processes the data.</p>
+            </div>
+        `;
 
         try {
 
@@ -20,22 +30,50 @@ document
 
             const data = await response.json();
 
-            if (data.error) {
-                resultDiv.innerHTML =
-                    `<p class="error">Error: ${data.error}</p>`;
-                return;
+            if (!response.ok || data.error) {
+                throw new Error(data.error || "Prediction failed.");
             }
 
+            const isChurn = data.prediction === 1;
+
+            const statusClass = isChurn
+                ? "status-risk"
+                : "status-safe";
+
+            const statusText = isChurn
+                ? "Churn Risk Detected"
+                : "Low Churn Risk";
+
             resultDiv.innerHTML = `
-                <h2>${data.result}</h2>
-                <p>Churn Probability: <strong>${data.probability}%</strong></p>
+                <div class="prediction-result">
+
+                    <div class="result-status ${statusClass}">
+                        ${statusText}
+                    </div>
+
+                    <h3>${data.result}</h3>
+
+                    <p class="probability">
+                        Churn Probability:
+                        <strong>${data.probability}%</strong>
+                    </p>
+
+                </div>
             `;
 
         } catch (error) {
 
-            resultDiv.innerHTML =
-                `<p class="error">Unable to connect to the server.</p>`;
+            resultDiv.innerHTML = `
+                <div class="error">
+                    ${error.message}
+                </div>
+            `;
 
             console.error(error);
+
+        } finally {
+
+            predictButton.disabled = false;
+            predictButton.textContent = "Predict Customer Churn";
         }
     });

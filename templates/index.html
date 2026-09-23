@@ -5,114 +5,334 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>E-Commerce Customer Churn Prediction</title>
+    <title>Customer Churn Prediction</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
 <body>
 
-    <div class="container">
+    <div class="dashboard">
 
-        <h1>E-Commerce Customer Churn Prediction</h1>
+        <!-- Header -->
+        <header class="dashboard-header">
 
-        <p class="subtitle">
-            Enter customer information to predict churn probability.
-        </p>
-
-        <form id="predictionForm">
-
-            <div class="form-grid">
-
-                <div class="form-group">
-                    <label>Tenure</label>
-                    <input type="number" name="Tenure" min="0" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Warehouse To Home</label>
-                    <input type="number" name="WarehouseToHome" min="0" step="0.1" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Number of Devices Registered</label>
-                    <input type="number" name="NumberOfDeviceRegistered" min="1" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Preferred Order Category</label>
-
-                    <select name="PreferredOrderCat" required>
-                        <option value="">Select Category</option>
-                        <option value="Laptop & Accessory">Laptop & Accessory</option>
-                        <option value="Mobile Phone">Mobile Phone</option>
-                        <option value="Mobile">Mobile</option>
-                        <option value="Fashion">Fashion</option>
-                        <option value="Grocery">Grocery</option>
-                        <option value="Others">Others</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Satisfaction Score</label>
-
-                    <select name="SatisfactionScore" required>
-                        <option value="">Select Score</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Marital Status</label>
-
-                    <select name="MaritalStatus" required>
-                        <option value="">Select Status</option>
-                        <option value="Single">Single</option>
-                        <option value="Married">Married</option>
-                        <option value="Divorced">Divorced</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Number of Addresses</label>
-                    <input type="number" name="NumberOfAddress" min="1" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Complaint</label>
-
-                    <select name="Complain" required>
-                        <option value="">Select</option>
-                        <option value="0">No</option>
-                        <option value="1">Yes</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Days Since Last Order</label>
-                    <input type="number" name="DaySinceLastOrder" min="0" step="0.1" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Cashback Amount</label>
-                    <input type="number" name="CashbackAmount" min="0" step="0.01" required>
-                </div>
-
+            <div>
+                <h1>Customer Churn Prediction</h1>
+                <p>
+                    E-Commerce Customer Analytics & Prediction System
+                </p>
             </div>
 
-            <button type="submit">
-                Predict Churn
-            </button>
+            <div class="model-badge">
+                <span class="status-dot"></span>
+                XGBoost Model
+            </div>
 
-        </form>
+        </header>
 
-        <div id="result" class="result"></div>
+
+        <!-- Main Content -->
+        <main class="dashboard-content">
+
+            <!-- Prediction Form -->
+            <section class="card prediction-card">
+
+                <div class="card-header">
+                    <h2>Customer Information</h2>
+                    <p>
+                        Enter customer details to estimate churn probability.
+                    </p>
+                </div>
+
+
+                <form id="predictionForm">
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label for="Tenure">Tenure</label>
+                            <input
+                                type="number"
+                                id="Tenure"
+                                name="Tenure"
+                                min="0"
+                                required>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="WarehouseToHome">
+                                Warehouse To Home
+                            </label>
+
+                            <input
+                                type="number"
+                                id="WarehouseToHome"
+                                name="WarehouseToHome"
+                                min="0"
+                                step="0.1"
+                                required>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="NumberOfDeviceRegistered">
+                                Devices Registered
+                            </label>
+
+                            <input
+                                type="number"
+                                id="NumberOfDeviceRegistered"
+                                name="NumberOfDeviceRegistered"
+                                min="1"
+                                required>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="PreferredOrderCat">
+                                Preferred Order Category
+                            </label>
+
+                            <select
+                                id="PreferredOrderCat"
+                                name="PreferredOrderCat"
+                                required>
+
+                                <option value="">
+                                    Select Category
+                                </option>
+
+                                <option value="Laptop & Accessory">
+                                    Laptop & Accessory
+                                </option>
+
+                                <option value="Mobile Phone">
+                                    Mobile Phone
+                                </option>
+
+                                <option value="Mobile">
+                                    Mobile
+                                </option>
+
+                                <option value="Fashion">
+                                    Fashion
+                                </option>
+
+                                <option value="Grocery">
+                                    Grocery
+                                </option>
+
+                                <option value="Others">
+                                    Others
+                                </option>
+
+                            </select>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="SatisfactionScore">
+                                Satisfaction Score
+                            </label>
+
+                            <select
+                                id="SatisfactionScore"
+                                name="SatisfactionScore"
+                                required>
+
+                                <option value="">
+                                    Select Score
+                                </option>
+
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+
+                            </select>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="MaritalStatus">
+                                Marital Status
+                            </label>
+
+                            <select
+                                id="MaritalStatus"
+                                name="MaritalStatus"
+                                required>
+
+                                <option value="">
+                                    Select Status
+                                </option>
+
+                                <option value="Single">Single</option>
+                                <option value="Married">Married</option>
+                                <option value="Divorced">Divorced</option>
+
+                            </select>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="NumberOfAddress">
+                                Number of Addresses
+                            </label>
+
+                            <input
+                                type="number"
+                                id="NumberOfAddress"
+                                name="NumberOfAddress"
+                                min="1"
+                                required>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="Complain">
+                                Complaint
+                            </label>
+
+                            <select
+                                id="Complain"
+                                name="Complain"
+                                required>
+
+                                <option value="">
+                                    Select
+                                </option>
+
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+
+                            </select>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="DaySinceLastOrder">
+                                Days Since Last Order
+                            </label>
+
+                            <input
+                                type="number"
+                                id="DaySinceLastOrder"
+                                name="DaySinceLastOrder"
+                                min="0"
+                                step="0.1"
+                                required>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="CashbackAmount">
+                                Cashback Amount
+                            </label>
+
+                            <input
+                                type="number"
+                                id="CashbackAmount"
+                                name="CashbackAmount"
+                                min="0"
+                                step="0.01"
+                                required>
+                        </div>
+
+                    </div>
+
+
+                    <button type="submit" id="predictButton">
+                        Predict Customer Churn
+                    </button>
+
+                </form>
+
+            </section>
+
+
+            <!-- Result -->
+            <section class="card result-card">
+
+                <div class="card-header">
+                    <h2>Prediction Result</h2>
+                    <p>Model-generated customer churn assessment.</p>
+                </div>
+
+                <div id="result" class="result-placeholder">
+
+                    <div class="result-icon">
+                        ?
+                    </div>
+
+                    <h3>Waiting for prediction</h3>
+
+                    <p>
+                        Enter customer information and click
+                        <strong>Predict Customer Churn</strong>.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- Model Performance -->
+            <section class="card performance-card">
+
+                <div class="card-header">
+                    <h2>Model Performance</h2>
+
+                    <p>
+                        XGBoost evaluation on the held-out test dataset.
+                    </p>
+                </div>
+
+
+                <div class="metrics-grid">
+
+                    <div class="metric">
+                        <span>Accuracy</span>
+                        <strong>91.13%</strong>
+                    </div>
+
+                    <div class="metric">
+                        <span>Precision</span>
+                        <strong>75.26%</strong>
+                    </div>
+
+                    <div class="metric">
+                        <span>Recall</span>
+                        <strong>68.22%</strong>
+                    </div>
+
+                    <div class="metric">
+                        <span>F1-Score</span>
+                        <strong>71.57%</strong>
+                    </div>
+
+                    <div class="metric">
+                        <span>ROC-AUC</span>
+                        <strong>95.76%</strong>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+
+        <footer>
+            E-Commerce Customer Churn Prediction · Machine Learning Project
+        </footer>
 
     </div>
+
 
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
