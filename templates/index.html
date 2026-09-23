@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>E-Commerce Customer Churn Prediction</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>E-Commerce Customer Churn Prediction</h1>
+
+        <p class="subtitle">
+            Enter customer information to predict churn probability.
+        </p>
+
+        <form id="predictionForm">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>Tenure</label>
+                    <input type="number" name="Tenure" min="0" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Warehouse To Home</label>
+                    <input type="number" name="WarehouseToHome" min="0" step="0.1" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Number of Devices Registered</label>
+                    <input type="number" name="NumberOfDeviceRegistered" min="1" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Preferred Order Category</label>
+
+                    <select name="PreferredOrderCat" required>
+                        <option value="">Select Category</option>
+                        <option value="Laptop & Accessory">Laptop & Accessory</option>
+                        <option value="Mobile Phone">Mobile Phone</option>
+                        <option value="Mobile">Mobile</option>
+                        <option value="Fashion">Fashion</option>
+                        <option value="Grocery">Grocery</option>
+                        <option value="Others">Others</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Satisfaction Score</label>
+
+                    <select name="SatisfactionScore" required>
+                        <option value="">Select Score</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Marital Status</label>
+
+                    <select name="MaritalStatus" required>
+                        <option value="">Select Status</option>
+                        <option value="Single">Single</option>
+                        <option value="Married">Married</option>
+                        <option value="Divorced">Divorced</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Number of Addresses</label>
+                    <input type="number" name="NumberOfAddress" min="1" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Complaint</label>
+
+                    <select name="Complain" required>
+                        <option value="">Select</option>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Days Since Last Order</label>
+                    <input type="number" name="DaySinceLastOrder" min="0" step="0.1" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Cashback Amount</label>
+                    <input type="number" name="CashbackAmount" min="0" step="0.01" required>
+                </div>
+
+            </div>
+
+            <button type="submit">
+                Predict Churn
+            </button>
+
+        </form>
+
+        <div id="result" class="result"></div>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+
+</html>
