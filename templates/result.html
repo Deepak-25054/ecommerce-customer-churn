@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Detailed Prediction Report
+    </title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body>
+
+<div class="dashboard">
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="dashboard-header">
+
+        <div>
+
+            <h1>
+                Customer Churn Prediction
+            </h1>
+
+            <p>
+                Detailed Prediction Report
+            </p>
+
+        </div>
+
+
+        <div class="model-badge">
+
+            <span class="status-dot"></span>
+
+            XGBoost Model
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="report-container">
+
+
+        <!-- REPORT HEADING -->
+
+        <section class="report-heading">
+
+            <span class="report-label">
+                AI PREDICTION REPORT
+            </span>
+
+            <h2>
+                Customer Churn Assessment
+            </h2>
+
+            <p>
+                Detailed analysis generated from the
+                trained XGBoost churn prediction model.
+            </p>
+
+        </section>
+
+
+
+        <!-- =================================================
+             PREDICTION SUMMARY
+        ================================================== -->
+
+        <section class="report-summary-grid">
+
+
+            <!-- Prediction Card -->
+
+            <div class="report-card">
+
+                <div class="report-card-header">
+
+                    <div class="report-icon">
+                        AI
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Prediction
+                        </h3>
+
+                        <p>
+                            Model assessment
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="reportPrediction"
+                    class="report-prediction">
+
+                    --
+
+                </div>
+
+
+                <div
+                    id="reportStatus"
+                    class="report-status">
+
+                    --
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Probability Card -->
+
+            <div class="report-card">
+
+                <div class="report-card-header">
+
+                    <div class="report-icon">
+                        %
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Churn Probability
+                        </h3>
+
+                        <p>
+                            Estimated probability
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="reportProbability"
+                    class="report-probability">
+
+                    --%
+
+                </div>
+
+
+                <div class="report-progress">
+
+                    <div
+                        id="reportProgress"
+                        class="report-progress-fill">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             CUSTOMER INFORMATION
+        ================================================== -->
+
+        <section class="report-card">
+
+
+            <div class="report-card-header">
+
+                <div class="report-icon">
+                    👤
+                </div>
+
+                <div>
+
+                    <h3>
+                        Customer Information
+                    </h3>
+
+                    <p>
+                        Information used by the prediction model
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="customer-details">
+
+
+                <div class="detail-item">
+
+                    <span>
+                        Tenure
+                    </span>
+
+                    <strong id="reportTenure">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span>
+                        Warehouse To Home
+                    </span>
+
+                    <strong id="reportWarehouse">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span>
+                        Devices Registered
+                    </span>
+
+                    <strong id="reportDevices">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span>
+                        Number of Addresses
+                    </span>
+
+                    <strong id="reportAddresses">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span>
+                        Preferred Category
+                    </span>
+
+                    <strong id="reportCategory">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span>
+                        Days Since Last Order
+                    </span>
+
+                    <strong id="reportDays">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span>
+                        Cashback Amount
+                    </span>
+
+                    <strong id="reportCashback">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span>
+                        Complaint
+                    </span>
+
+                    <strong id="reportComplaint">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span>
+                        Satisfaction Score
+                    </span>
+
+                    <strong id="reportSatisfaction">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span>
+                        Marital Status
+                    </span>
+
+                    <strong id="reportMarital">
+                        --
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             MODEL INFORMATION
+        ================================================== -->
+
+        <section class="report-card">
+
+
+            <div class="report-card-header">
+
+                <div class="report-icon">
+                    📊
+                </div>
+
+                <div>
+
+                    <h3>
+                        Model Information
+                    </h3>
+
+                    <p>
+                        Performance of the deployed model
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="model-details">
+
+
+                <div class="model-detail">
+
+                    <span>
+                        Model
+                    </span>
+
+                    <strong>
+                        XGBoost Classifier
+                    </strong>
+
+                </div>
+
+
+                <div class="model-detail">
+
+                    <span>
+                        Accuracy
+                    </span>
+
+                    <strong>
+                        91.13%
+                    </strong>
+
+                </div>
+
+
+                <div class="model-detail">
+
+                    <span>
+                        Precision
+                    </span>
+
+                    <strong>
+                        75.26%
+                    </strong>
+
+                </div>
+
+
+                <div class="model-detail">
+
+                    <span>
+                        Recall
+                    </span>
+
+                    <strong>
+                        68.22%
+                    </strong>
+
+                </div>
+
+
+                <div class="model-detail">
+
+                    <span>
+                        F1-Score
+                    </span>
+
+                    <strong>
+                        71.57%
+                    </strong>
+
+                </div>
+
+
+                <div class="model-detail">
+
+                    <span>
+                        ROC-AUC
+                    </span>
+
+                    <strong>
+                        95.76%
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             ACTION BUTTONS
+        ================================================== -->
+
+        <section class="report-actions">
+
+            <a
+                href="/"
+                class="report-button primary-report-button">
+
+                ← New Prediction
+
+            </a>
+
+
+            <a
+                href="/dashboard"
+                class="report-button secondary-report-button">
+
+                View Analytics Dashboard
+
+            </a>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        E-Commerce Customer Churn Prediction
+        •
+        XGBoost Machine Learning System
+
+    </footer>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     REPORT JAVASCRIPT
+====================================================== -->
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        // -----------------------------------------------
+        // Get saved prediction report
+        // -----------------------------------------------
+
+        const savedReport =
+            sessionStorage.getItem(
+                "churnReport"
+            );
+
+
+        console.log(
+            "Saved report:",
+            savedReport
+        );
+
+
+        // -----------------------------------------------
+        // No report available
+        // -----------------------------------------------
+
+        if (!savedReport) {
+
+            document.getElementById(
+                "reportPrediction"
+            ).textContent =
+                "No Prediction";
+
+            document.getElementById(
+                "reportStatus"
+            ).textContent =
+                "Please make a prediction first.";
+
+            return;
+
+        }
+
+
+        // -----------------------------------------------
+        // Convert saved JSON to object
+        // -----------------------------------------------
+
+        const report =
+            JSON.parse(savedReport);
+
+
+        const customer =
+            report.customer;
+
+        const prediction =
+            report.prediction;
+
+
+        console.log(
+            "Customer:",
+            customer
+        );
+
+        console.log(
+            "Prediction:",
+            prediction
+        );
+
+
+        // =================================================
+        // PREDICTION
+        // =================================================
+
+        document.getElementById(
+            "reportPrediction"
+        ).textContent =
+            prediction.result;
+
+
+        document.getElementById(
+            "reportStatus"
+        ).textContent =
+            prediction.riskLevel;
+
+
+        // =================================================
+        // PROBABILITY
+        // =================================================
+
+        document.getElementById(
+            "reportProbability"
+        ).textContent =
+            prediction.probability.toFixed(2) + "%";
+
+
+        document.getElementById(
+            "reportProgress"
+        ).style.width =
+            prediction.probability + "%";
+
+
+        // =================================================
+        // CUSTOMER INFORMATION
+        // =================================================
+
+        document.getElementById(
+            "reportTenure"
+        ).textContent =
+            customer.Tenure;
+
+
+        document.getElementById(
+            "reportWarehouse"
+        ).textContent =
+            customer.WarehouseToHome;
+
+
+        document.getElementById(
+            "reportDevices"
+        ).textContent =
+            customer.NumberOfDeviceRegistered;
+
+
+        document.getElementById(
+            "reportAddresses"
+        ).textContent =
+            customer.NumberOfAddress;
+
+
+        document.getElementById(
+            "reportCategory"
+        ).textContent =
+            customer.PreferredOrderCat;
+
+
+        document.getElementById(
+            "reportDays"
+        ).textContent =
+            customer.DaySinceLastOrder;
+
+
+        document.getElementById(
+            "reportCashback"
+        ).textContent =
+            customer.CashbackAmount;
+
+
+        document.getElementById(
+            "reportComplaint"
+        ).textContent =
+            customer.Complain === "1"
+                ? "Yes"
+                : "No";
+
+
+        document.getElementById(
+            "reportSatisfaction"
+        ).textContent =
+            customer.SatisfactionScore;
+
+
+        document.getElementById(
+            "reportMarital"
+        ).textContent =
+            customer.MaritalStatus;
+
+
+    }
+
+);
+
+</script>
+
+
+</body>
+
+</html>

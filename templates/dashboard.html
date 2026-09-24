@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Churn Analytics Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- Header -->
+        <header class="dashboard-header">
+
+            <div>
+                <h1>Churn Analytics Dashboard</h1>
+
+                <p>
+                    E-Commerce Customer Churn Analysis
+                </p>
+            </div>
+
+            <div class="model-badge">
+                XGBoost Model
+            </div>
+
+        </header>
+
+
+        <main class="dashboard-content">
+
+            <!-- Dataset Overview -->
+
+            <section class="card performance-card">
+
+                <div class="card-header">
+                    <h2>Dataset Overview</h2>
+
+                    <p>
+                        Summary of the customer churn dataset used for analysis.
+                    </p>
+                </div>
+
+
+                <div class="metrics-grid">
+
+                    <div class="metric">
+                        <span>Total Customers</span>
+                        <strong>3,269</strong>
+                    </div>
+
+                    <div class="metric">
+                        <span>Churned Customers</span>
+                        <strong>534</strong>
+                    </div>
+
+                    <div class="metric">
+                        <span>Non-Churned</span>
+                        <strong>2,735</strong>
+                    </div>
+
+                    <div class="metric">
+                        <span>Churn Rate</span>
+                        <strong>16.34%</strong>
+                    </div>
+
+                    <div class="metric">
+                        <span>Features</span>
+                        <strong>10</strong>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Model Performance -->
+
+            <section class="card performance-card">
+
+                <div class="card-header">
+
+                    <h2>Model Performance</h2>
+
+                    <p>
+                        XGBoost performance on the held-out test dataset.
+                    </p>
+
+                </div>
+
+
+                <div class="metrics-grid">
+
+                    <div class="metric">
+                        <span>Accuracy</span>
+                        <strong>91.13%</strong>
+                    </div>
+
+                    <div class="metric">
+                        <span>Precision</span>
+                        <strong>75.26%</strong>
+                    </div>
+
+                    <div class="metric">
+                        <span>Recall</span>
+                        <strong>68.22%</strong>
+                    </div>
+
+                    <div class="metric">
+                        <span>F1-Score</span>
+                        <strong>71.57%</strong>
+                    </div>
+
+                    <div class="metric">
+                        <span>ROC-AUC</span>
+                        <strong>95.76%</strong>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- EDA Insights -->
+
+            <section class="card">
+
+                <div class="card-header">
+
+                    <h2>Key Churn Insights</h2>
+
+                    <p>
+                        Important relationships identified during exploratory
+                        data analysis.
+                    </p>
+
+                </div>
+
+
+                <div class="insights">
+
+                    <div class="insight">
+                        <h3>Complaint</h3>
+
+                        <p>
+                            Customers with a recorded complaint had an observed
+                            churn rate of <strong>31.81%</strong>.
+                        </p>
+                    </div>
+
+
+                    <div class="insight">
+                        <h3>Tenure</h3>
+
+                        <p>
+                            Tenure showed a negative correlation with churn
+                            of approximately <strong>-0.34</strong>.
+                        </p>
+                    </div>
+
+
+                    <div class="insight">
+                        <h3>Order Category</h3>
+
+                        <p>
+                            Observed churn rates varied across preferred
+                            order categories.
+                        </p>
+                    </div>
+
+
+                    <div class="insight">
+                        <h3>Satisfaction</h3>
+
+                        <p>
+                            Churn rates varied across different satisfaction
+                            score levels.
+                        </p>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Navigation -->
+
+            <section class="card navigation-card">
+
+                <h2>Prediction</h2>
+
+                <p>
+                    Want to predict churn for an individual customer?
+                </p>
+
+                <a href="/" class="dashboard-button">
+                    Go to Customer Prediction
+                </a>
+
+            </section>
+
+        </main>
+
+
+        <footer>
+            E-Commerce Customer Churn Prediction · Analytics Dashboard
+        </footer>
+
+    </div>
+
+</body>
+
+</html>
